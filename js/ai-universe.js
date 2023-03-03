@@ -1,21 +1,47 @@
 window.addEventListener('load', function () {
-    const loading =this.document.getElementById('load-spin');
+    const loading = document.getElementById('load-spin');
     loading.classList.add('d-none')
-    loading.addEventListener('transitionend', function(){
+    loading.addEventListener('transitionend', function () {
         document.body.removeChild('load-spin');
     })
 })
 
-const loadData = () => {
-    fetch('https://openapi.programming-hero.com/api/ai/tools')
-        .then(res => res.json())
-        .then(data => displayData(data.data.tools))
+const loadData = async () => {
+    // fetch('https://openapi.programming-hero.com/api/ai/tools')
+    //     .then(res => res.json())
+    //     .then(data => displayData(data.data.tools))
+    const res = await fetch('https://openapi.programming-hero.com/api/ai/tools');
+    const data = await res.json();
+    displayData(data.data.tools.slice(0, 6));
 }
+
+const showAllData = async () => {
+
+    // fetch('https://openapi.programming-hero.com/api/ai/tools')
+    //     .then(res => res.json())
+    //     .then(data => displayData(data.data.tools));
+
+    const res = await fetch('https://openapi.programming-hero.com/api/ai/tools');
+    const data = await res.json();
+    const showAll = document.getElementById('show-all');
+    const container = document.getElementById('data-load');
+    if (data.length > 6) {
+        data = data.slice(0, 6);
+        showAll.classList.remove('d-none');
+    }
+    else {
+        container.innerText = '';
+        displayData(data.data.tools);
+        showAll.classList.add('d-none');
+    }
+
+};
 
 const displayData = (datas) => {
     const container = document.getElementById('data-load');
+
     for (const data of datas) {
-        // console.log(data);
+        console.log(data);
         const newCard = document.createElement('div');
         newCard.classList.add('col')
         newCard.innerHTML = `
@@ -23,9 +49,14 @@ const displayData = (datas) => {
         <img src="${data.image}" class="card-img-top" alt="...">
         <div class="card-body">
         <h2>Feature</h2>
-            <h5 class="card-title">1.${data.features[0]}</h5>
-            <h5 class="card-title">2.${data.features[1]}</h5>
-            <h5 class="card-title">3.${data.features[2]}</h5>
+        <ol>
+                    <li>${data.features[0] ? data.features[0] : 'No data found'}</li>
+                    <li>${data.features[1] ? data.features[1] : 'No data found'}</li>
+                    <li class ="${data.features[2] ? data.features[2] : 'd-none'}">${data.features[2] ? data.features[2] : 'No data found'}</li>
+                    <li class ="${data.features[3] ? data.features[3] : 'd-none'}">${data.features[3] ? data.features[3] : ''}</li>
+                    
+                    
+                    </ol>
             <hr />
         
         </div>
@@ -71,14 +102,14 @@ const showModalData = (details) => {
         <div>
         <h3>Features</h3>
         <li>${details.features['1'].feature_name}</li>
-        <li>${details.features['2'].feature_name}</li>
-        <li>${details.features['3'].feature_name}</li>
+                            <li>${details.features['2'].feature_name}</li>
+                            <li>${details.features['3'].feature_name}</li>
+                            <li class = "${details.features['4'] ? details.features['4'].feature_name : 'd-none'}">${details.features['4'] ? details.features['4'].feature_name : "not found"}</li>
         </div>
         <div>
         <h3>Integrations</h3>
-        <li>${details.integrations ? details.integrations[0] : 'No data found'}</li>
-        <li>${details.integrations ? details.integrations[1] : 'No data found'}</li>
-        <li>${details.integrations ? details.integrations[2] : 'No data found'}</li>
+        <p>${details.integrations ? integrationsData(details.integrations) : 'not found'}</p>
+
         </div>
         </div>
       </div>
@@ -94,6 +125,7 @@ const showModalData = (details) => {
     newCard2.innerHTML = `
 <div>
 <div class="card">
+<button class = "${details.accuracy.score ? details.accuracy.score * 100 : 'd-none'} btn btn-danger" style="position: absolute; top: -10px;right:-5px " >${details.accuracy.score ? details.accuracy.score * 100 : ''} %accuracy </button>
 <img src="${details.image_link[0]}" class="card-img-top" alt="...">
 <div class="card-body">
 <h3 class="">${details.input_output_examples?.[0].input ? details.input_output_examples[0].input : 'Can you giv any example?'}</h3>
@@ -107,37 +139,14 @@ const showModalData = (details) => {
 }
 
 
-// const modalFeatures = (id) => {
-//     fetch(`https://openapi.programming-hero.com/api/ai/tool/&${id}`)
-//         .then(res => res.json())
-//         .then(data => console.log(data.id))
-// }
 
-// const showFeature = (features) => {
-//     // console.log(features.pricing);
-//     console.log(features.pricing);
-//     const container = document.getElementById('modal-four');
-//     container.innerText = '';
-//     const newCard = document.createElement('div');
-//     newCard.classList.add('col');
-//     newCard.innerHTML = `
-//           <div class="d-flex justify-content-between">
-//             <h5 class="card-title text-success">${features.pricing ? features.pricing[0].price : 'free of cost'} <br /> ${features.pricing ? features.pricing[0].plan : 'free of cost'}</h5>
-//             <h5 class="card-title text-warning">${features.pricing ? features.pricing[1].price : 'free of cost'} <br /> ${features.pricing ? features.pricing[1].plan : 'free of cost'}</h5>
-//             <h5 class="card-title text-danger">${features.pricing ? features.pricing[2].price : 'free of cost'} <br /> ${features.pricing ? features.pricing[2].plan : 'free of cost'}</h5>
-//           </div>
-//             `;
-//     container.appendChild(newCard);
-// }
-
-// const loadMoreFeature = (id) => {
-//     fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`)
-//         .then(res => res.json())
-//         .then(data => showFeature(data.data.pricing))
-// }
-
-
-// modalFeatures();
 loadData();
 
 
+const integrationsData = (integrations) => {
+    let innerHTML = ''
+    for (let i = 0; i < integrations.length; i++) {
+        innerHTML += `<li class="card-text">${integrations[i]} </li>`
+    }
+    return innerHTML;
+}

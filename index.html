@@ -15,7 +15,7 @@
 <body>
     <header class="container text-center mt-4">
         <h3>Ai Universe hub</h3>
-        <button class="btn btn-primary">Sort By Date</button>
+        <button id="sort-btn" class="btn btn-primary">Sort By Date</button>
     </header>
 
     <main class="container">
@@ -24,7 +24,9 @@
 
             </div>
         </section>
-
+        <div id="show-all" class="text-center mt-4">
+            <div onclick="showAllData()" id="btn-show-all" class="bnt btn btn-primary">See more</div>
+        </div>
         <!-- Modal -->
         <!-- Button trigger modal -->
         <!-- <button type="button" class="btn btn-primary" >
@@ -42,10 +44,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="d-flex">
-                            <div>
-                                <div id="modal-two" class="modal-body">
-
-                                </div>
+                            <div id="modal-two" class="modal-body">
 
                             </div>
                             <div id="modal-three" class="modal-body">
