@@ -43,7 +43,7 @@ const modalLoad = (id) => {
 }
 
 const showModalData = (details) => {
-    console.log(details);
+    // console.log(details);
     const container = document.getElementById('modal-two');
     container.innerText = '';
     const newCard = document.createElement('div');
@@ -65,7 +65,7 @@ const showModalData = (details) => {
     container2.innerText = '';
     const newCard2 = document.createElement('div');
     newCard2.classList.add('col');
-    newCard2.innerHTML=`
+    newCard2.innerHTML = `
 <div>
 <div class="card">
 <img src="${details.image_link[0]}" class="card-img-top" alt="...">
@@ -80,6 +80,31 @@ const showModalData = (details) => {
     container2.appendChild(newCard2);
 }
 
+const modalFeatures = () => {
+    fetch(`https://openapi.programming-hero.com/api/ai/tool/01`)
+        .then(res => res.json())
+        .then(data => showFeature(data.data.pricing))
+}
+
+const showFeature = (features) => {
+    // console.log(features.pricing);
+    console.log(features[0]);
+    const container = document.getElementById('modal-four');
+    container.innerText = '';
+    const newCard = document.createElement('div');
+    // newCard.classList.add('col');
+    newCard.innerHTML = `
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title text-success">${features[0].price} <br /> ${features[0].plan}</h5>
+            <h5 class="card-title text-warning">${features[1].price} <br /> ${features[1].plan}</h5>
+            <h5 class="card-title text-danger">${features[2].price} <br /> ${features[2].plan}</h5>
+          </div>
+            `;
+    container.appendChild(newCard);
+
+}
+
+modalFeatures();
 loadData();
 
 
