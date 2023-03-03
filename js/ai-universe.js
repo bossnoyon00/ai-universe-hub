@@ -1,3 +1,11 @@
+window.addEventListener('load', function () {
+    const loading =this.document.getElementById('load-spin');
+    loading.classList.add('d-none')
+    loading.addEventListener('transitionend', function(){
+        document.body.removeChild('load-spin');
+    })
+})
+
 const loadData = () => {
     fetch('https://openapi.programming-hero.com/api/ai/tools')
         .then(res => res.json())
@@ -55,9 +63,9 @@ const showModalData = (details) => {
       <div class="card-body">
         <h5 class="card-title">${details.description}</h5>
         <div class="d-flex mt-3 justify-content-between">
-        <p class="bg-primary-subtle p-2 rounded text-danger">${details.pricing ? details.pricing[0].price : 'free of cost'} <br/> ${details.pricing ? details.pricing[0].plan : ''}</p>
-        <p class="bg-primary-subtle p-2 rounded text-success">${details.pricing ? details.pricing[1].price : 'free of cost'} <br/> ${details.pricing ? details.pricing[1].plan : ''}</p>
-        <p class="text-warning bg-primary-subtle p-2 rounded">${details.pricing ? details.pricing[2].price : 'free of cost'} <br/> ${details.pricing ? details.pricing[2].plan : ''}</p>
+        <p class="bg-primary-subtle p-2 rounded text-danger">${details.pricing ? details.pricing[0].price : 'free of cost'} /<br/> ${details.pricing ? details.pricing[0].plan : ''}</p>
+        <p class="bg-primary-subtle p-2 rounded text-success">${details.pricing ? details.pricing[1].price : 'free of cost'} /<br/> ${details.pricing ? details.pricing[1].plan : ''}</p>
+        <p class="text-warning bg-primary-subtle p-2 rounded">${details.pricing ? details.pricing[2].price : 'free of cost'} /<br/> ${details.pricing ? details.pricing[2].plan : ''}</p>
         </div>
         <div class="d-flex justify-content-between mt-3">
         <div>
@@ -68,9 +76,9 @@ const showModalData = (details) => {
         </div>
         <div>
         <h3>Integrations</h3>
-        <li>${details.integrations[0]}</li>
-        <li>${details.integrations[1]}</li>
-        <li>${details.integrations[2]}</li>
+        <li>${details.integrations ? details.integrations[0] : 'No data found'}</li>
+        <li>${details.integrations ? details.integrations[1] : 'No data found'}</li>
+        <li>${details.integrations ? details.integrations[2] : 'No data found'}</li>
         </div>
         </div>
       </div>
@@ -88,8 +96,8 @@ const showModalData = (details) => {
 <div class="card">
 <img src="${details.image_link[0]}" class="card-img-top" alt="...">
 <div class="card-body">
-<h5 class="">${details.input_output_examples?.[0].input ? details.input_output_examples[0].input : 'Sorry no data available'}</h5>
-<p class="">${details.input_output_examples?.[0].output ? details.input_output_examples[0].output : 'Sorry no data available'}</p>
+<h3 class="">${details.input_output_examples?.[0].input ? details.input_output_examples[0].input : 'Can you giv any example?'}</h3>
+<p class="">${details.input_output_examples?.[0].output ? details.input_output_examples[0].output : 'No! Not yet! take a break!!!'}</p>
 
 </div>
 </div>
