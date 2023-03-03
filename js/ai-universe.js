@@ -86,56 +86,55 @@ const showModalData = (details) => {
     const container = document.getElementById('modal-two');
     container.innerText = '';
     const newCard = document.createElement('div');
-    newCard.classList.add('col');
+    newCard.classList.add('row');
     newCard.innerHTML = `
-    <div class="card bg-danger h-100">
-        <div>
-        <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">${details.description}</h5>
-        <div class="d-flex mt-3 justify-content-between">
-        <p class="bg-primary-subtle p-2 rounded text-danger">${details.pricing ? details.pricing[0].price : 'free of cost'} /<br/> ${details.pricing ? details.pricing[0].plan : ''}</p>
-        <p class="bg-primary-subtle p-2 rounded text-success">${details.pricing ? details.pricing[1].price : 'free of cost'} /<br/> ${details.pricing ? details.pricing[1].plan : ''}</p>
-        <p class="text-warning bg-primary-subtle p-2 rounded">${details.pricing ? details.pricing[2].price : 'free of cost'} /<br/> ${details.pricing ? details.pricing[2].plan : ''}</p>
-        </div>
-        <div class="d-flex justify-content-between mt-3">
-        <div>
-        <h3>Features</h3>
-        <li>${details.features['1'].feature_name}</li>
-                            <li>${details.features['2'].feature_name}</li>
-                            <li>${details.features['3'].feature_name}</li>
-                            <li class = "${details.features['4'] ? details.features['4'].feature_name : 'd-none'}">${details.features['4'] ? details.features['4'].feature_name : "not found"}</li>
-        </div>
-        <div>
-        <h3>Integrations</h3>
-        <p>${details.integrations ? integrationsData(details.integrations) : 'not found'}</p>
+    <div class="col-sm-6">
+                           <div class="card">
+                             <div class="card-body"  style="border: 1px solid tomato; border-radius: 5px;">
+                               <p class="card-text fw-bold">${details.description}/</p>
+                               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 container"> 
+                            
+                                 <p class="card-text fw-bold">${details.pricing ? details.pricing[0].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[0].plan : ''}</span></p>
+                               
+                                 <p class="card-text fw-bold">${details.pricing ? details.pricing[1].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[1].plan : ''}</span></p>
+                                 <p class="card-text fw-bold">${details.pricing ? details.pricing[2].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[2].plan : ''}</span></p>
+                                
+                               </div>
+                            
 
-        </div>
-        </div>
-      </div>
-    </div>
-        </div>
-        `;
-    container.appendChild(newCard);
+                               <div class="d-flex justify-content-space-between mt-2">
+                               <div>
+                               <h5 class="card-title">Features</h5>
+                               <li>${details.features['1'].feature_name}</li>
+                               <li>${details.features['2'].feature_name}</li>
+                               <li>${details.features['3'].feature_name}</li>
+                               <li class = "${details.features['4'] ? details.features['4'].feature_name : 'd-none'}">${details.features['4'] ? details.features['4'].feature_name : "not found"}</li>
+                               </div>
+                               <div>
+                               <h5 class="card-title">Integrations</h5>
+                               <p>${details.integrations ? integrationsData(details.integrations) : 'not found'}</p>
+                               </div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                         <div class="col-sm-6">
+                           <div class="card">
+                           <button class = "${details.accuracy.score ? details.accuracy.score * 100 : 'd-none'} btn btn-danger" style="position: absolute; top: -10px;right:-5px " >${details.accuracy.score ? details.accuracy.score * 100 : ''} %accuracy </button>
+                           <img src="${details.image_link[0]
+        }" class=" img-fluid rounded-3 " alt="...">
 
-    const container2 = document.getElementById('modal-three');
-    container2.innerText = '';
-    const newCard2 = document.createElement('div');
-    newCard2.classList.add('col');
-    newCard2.innerHTML = `
-<div>
-<div class="card">
-<button class = "${details.accuracy.score ? details.accuracy.score * 100 : 'd-none'} btn btn-danger" style="position: absolute; top: -10px;right:-5px " >${details.accuracy.score ? details.accuracy.score * 100 : ''} %accuracy </button>
-<img src="${details.image_link[0]}" class="card-img-top" alt="...">
-<div class="card-body">
-<h3 class="">${details.input_output_examples?.[0].input ? details.input_output_examples[0].input : 'Can you giv any example?'}</h3>
-<p class="">${details.input_output_examples?.[0].output ? details.input_output_examples[0].output : 'No! Not yet! take a break!!!'}</p>
-
-</div>
-</div>
-</div>
+                             <div class="card-body">
+                               <h5 class="card-title text-center">${details.input_output_examples ? details.input_output_examples[0].input : 'No Data Found'}</h5>
+                               <p class="card-text text-center">${details.input_output_examples ? details.input_output_examples[0].output : 'No Data Found'}</p>
+                             </div>
+                           </div>
+                         
+                         </div>
+                       
+  
     `;
-    container2.appendChild(newCard2);
+    container.appendChild(newCard);
 }
 
 
