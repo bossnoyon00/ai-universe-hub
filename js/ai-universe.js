@@ -43,22 +43,43 @@ const modalLoad = (id) => {
 }
 
 const showModalData = (details) => {
-    console.log(details.description);
-
-    const container = document.getElementById('modal-load');
-    const newDiv = document.createElement('div');
-    newDiv.classList.add('col');
-    newDiv.innerHTML = `
-    <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="">${details.description}</p>
+    console.log(details);
+    const container = document.getElementById('modal-two');
+    container.innerText = '';
+    const newCard = document.createElement('div');
+    newCard.classList.add('col');
+    newCard.innerHTML = `
+    <div class="card h-100">
+        <div>
+        <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">${details.description}</h5>
+        
+      </div>
     </div>
+        </div>
+        `;
+    container.appendChild(newCard);
+
+    const container2 = document.getElementById('modal-three');
+    container2.innerText = '';
+    const newCard2 = document.createElement('div');
+    newCard2.classList.add('col');
+    newCard2.innerHTML=`
+<div>
+<div class="card">
+<img src="${details.image_link[0]}" class="card-img-top" alt="...">
+<div class="card-body">
+<h5 class="">${details.input_output_examples?.[0].input ? details.input_output_examples[0].input : 'Sorry no data available'}</h5>
+<p class="">${details.input_output_examples?.[0].output ? details.input_output_examples[0].output : 'Sorry no data available'}</p>
+
+</div>
+</div>
 </div>
     `;
-    container.appendChild(newDiv);
-
+    container2.appendChild(newCard2);
 }
 
 loadData();
+
+
