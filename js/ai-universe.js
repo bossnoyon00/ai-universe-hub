@@ -40,7 +40,7 @@ const displayData = (datas) => {
     const container = document.getElementById('data-load');
     container.innerHTML = '';
     for (const data of datas) {
-        console.log(data);
+        // console.log(data);
         const newCard = document.createElement('div');
         newCard.classList.add('col')
         newCard.innerHTML = `
@@ -88,20 +88,25 @@ const showModalData = (details) => {
     newCard.classList.add('row');
     newCard.innerHTML = `
     <div class="col-sm-6">
-                           <div class="card">
+                           <div class="card bg-danger-subtle">
                              <div class="card-body"  style="border: 1px solid tomato; border-radius: 5px;">
                                <p class="card-text fw-bold">${details.description}/</p>
-                               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 fw-bold"> 
-                            
-                                 <p class="card-text fw-bold bg-danger-subtle">${details.pricing ? details.pricing[0].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[0].plan : ''}</span></p>
+                               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 fw-bold"> 
+                                <div>
+                                <p class="card-text fw-bold bg-white p-3 rounded">${details.pricing ? details.pricing[0].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[0].plan : ''}</span></p>
+                                </div>
                                
-                                 <p class="card-text fw-bold bg-dark-subtle ">${details.pricing ? details.pricing[1].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[1].plan : ''}</span></p>
-                                 <p class="card-text fw-bold bg-primary-subtle">${details.pricing ? details.pricing[2].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[2].plan : ''}</span></p>
+                               <div>
+                               <p class="card-text fw-bold bg-white p-3 rounded">${details.pricing ? details.pricing[1].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[1].plan : ''}</span></p>
+                               </div>
+                               <div>
+                               <p class="card-text fw-bold bg-white p-3 rounded">${details.pricing ? details.pricing[2].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[2].plan : ''}</span></p>
+                               </div>
                                 
                                </div>
                             
 
-                               <div class="d-flex justify-content-space-between mt-2">
+                               <div class="d-flex justify-content-between mt-5">
                                <div>
                                <h5 class="card-title">Features</h5>
                                <li>${details.features['1'].feature_name}</li>
@@ -118,7 +123,7 @@ const showModalData = (details) => {
                            </div>
                          </div>
                          <div class="col-sm-6">
-                           <div class="card h-100">
+                           <div class="card bg-dark-subtle h-100">
                            <button class = "${details.accuracy.score ? details.accuracy.score * 100 : 'd-none'} btn btn-danger" style="position: absolute; top: -10px;right:-5px " >${details.accuracy.score ? details.accuracy.score * 100 : ''} %accuracy </button>
                            <img src="${details.image_link[0]
         }" class=" img-fluid rounded-3 " alt="...">
@@ -148,9 +153,12 @@ const dateSorting = () => {
 }
 
 const showSorting = (date) => {
+    console.log(date);
     const sort = date.sort((a, b) => {
+        console.log(a);
         return new Date(a.published_in) - new Date(b.published_in);
     })
+
     displayData(sort)
 }
 
