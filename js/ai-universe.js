@@ -93,14 +93,14 @@ const showModalData = (details) => {
                                <p class="card-text fw-bold">${details.description}/</p>
                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 fw-bold"> 
                                 <div>
-                                <p class="card-text fw-bold bg-white p-3 rounded">${details.pricing ? details.pricing[0].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[0].plan : ''}</span></p>
+                                <h5 class="card-text fw-bold bg-white text-p1 p-3 rounded">${details.pricing ? details.pricing[0].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[0].plan : ''}</span></h5>
                                 </div>
                                
                                <div>
-                               <p class="card-text fw-bold bg-white p-3 rounded">${details.pricing ? details.pricing[1].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[1].plan : ''}</span></p>
+                               <h5 class="card-text fw-bold bg-white text-p2 p-3 rounded">${details.pricing ? details.pricing[1].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[1].plan : ''}</span></h5>
                                </div>
                                <div>
-                               <p class="card-text fw-bold bg-white p-3 rounded">${details.pricing ? details.pricing[2].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[2].plan : ''}</span></p>
+                               <h5 class="card-text bg-white fw-bold text-p3 p-3 rounded">${details.pricing ? details.pricing[2].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[2].plan : ''}</span></h5>
                                </div>
                                 
                                </div>
@@ -108,14 +108,14 @@ const showModalData = (details) => {
 
                                <div class="d-flex justify-content-between mt-5">
                                <div>
-                               <h5 class="card-title">Features</h5>
+                               <h3 class="card-title">Features</h3>
                                <li>${details.features['1'].feature_name}</li>
                                <li>${details.features['2'].feature_name}</li>
                                <li>${details.features['3'].feature_name}</li>
                                <li class = "${details.features['4'] ? details.features['4'].feature_name : 'd-none'}">${details.features['4'] ? details.features['4'].feature_name : "not found"}</li>
                                </div>
                                <div>
-                               <h5 class="card-title">Integrations</h5>
+                               <h3 class="card-title">Integrations</h3>
                                <p>${details.integrations ? integrationsData(details.integrations) : 'not found'}</p>
                                </div>
                                </div>
@@ -123,10 +123,10 @@ const showModalData = (details) => {
                            </div>
                          </div>
                          <div class="col-sm-6">
-                           <div class="card bg-dark-subtle h-100">
+                           <div class="card bg-warning text-light fw-bold h-100">
                            <button class = "${details.accuracy.score ? details.accuracy.score * 100 : 'd-none'} btn btn-danger" style="position: absolute; top: -10px;right:-5px " >${details.accuracy.score ? details.accuracy.score * 100 : ''} %accuracy </button>
                            <img src="${details.image_link[0]
-        }" class=" img-fluid rounded-3 " alt="...">
+        }" class="img-fluid rounded-3 " alt="...">
 
                              <div class="card-body">
                                <h5 class="card-title text-center">${details.input_output_examples ? details.input_output_examples[0].input : 'No Data Found'}</h5>
