@@ -81,7 +81,7 @@ const modalLoad = (id) => {
 }
 
 const showModalData = (details) => {
-    console.log(details.features['2']);
+    // console.log(details.features['2']);
     const container = document.getElementById('modal-two');
     container.innerText = '';
     const newCard = document.createElement('div');
@@ -106,7 +106,7 @@ const showModalData = (details) => {
                                </div>
                             
 
-                               <div class="d-flex justify-content-between mt-5">
+                               <div class="d-flex justify-content-between mt-5 mx-3">
                                <div>
                                <h3 class="card-title">Features</h3>
                                <li>${details.features['1'].feature_name}</li>
