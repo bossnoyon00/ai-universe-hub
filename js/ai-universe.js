@@ -129,8 +129,8 @@ const showModalData = (details) => {
         }" class="img-fluid rounded-3 " alt="...">
 
                              <div class="card-body">
-                               <h5 class="card-title text-center">${details.input_output_examples ? details.input_output_examples[0].input : 'No Data Found'}</h5>
-                               <p class="card-text text-center">${details.input_output_examples ? details.input_output_examples[0].output : 'No Data Found'}</p>
+                               <h5 class="card-title text-center">${details.input_output_examples ? details.input_output_examples[0].input : 'Can you give any example?'}</h5>
+                               <p class="card-text text-center">${details.input_output_examples ? details.input_output_examples[0].output : 'No! Not yet! Not data Found!!!'}</p>
                              </div>
                            </div>
                          
