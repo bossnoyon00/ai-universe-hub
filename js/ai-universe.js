@@ -20,26 +20,26 @@ const showAllData = async () => {
     //     .then(res => res.json())
     //     .then(data => displayData(data.data.tools));
 
-    const showAll = document.getElementById('show-all');
+    // const showAll = document.getElementById('show-all');
     const res = await fetch('https://openapi.programming-hero.com/api/ai/tools');
     const data = await res.json();
     const container = document.getElementById('data-load');
     if (data.length > 6) {
         data = data.slice(0, 6);
-        showAll.classList.remove('d-none');
+        // showAll.classList.remove('d-none');
     }
     else {
         container.innerText = '';
         displayData(data.data.tools);
-        showAll.classList.add('d-none');
+        // showAll.classList.add('d-none');
     }
 
 };
 
-const displayData = (datas) => {
+const displayData = (details) => {
     const container = document.getElementById('data-load');
     container.innerHTML = '';
-    for (const data of datas) {
+    for (const data of details) {
         // console.log(data);
         const newCard = document.createElement('div');
         newCard.classList.add('col')
@@ -69,6 +69,15 @@ const displayData = (datas) => {
     </div>
         `;
         container.appendChild(newCard);
+    }
+
+    if (details.length > 6) {
+        const showAll = document.getElementById('btn-show-all');
+        showAll.classList.add('d-none');
+    }
+    else {
+        const showAll = document.getElementById('btn-show-all');
+        showAll.classList.remove('d-none');
     }
 }
 
