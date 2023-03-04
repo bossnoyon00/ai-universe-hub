@@ -65,7 +65,7 @@ const displayData = (datas) => {
         <h5>${data.name}</h5>
         <h6><i class="fa-solid fa-calendar-days"></i> ${data.published_in}</h6>
         </div>
-        <div><i class="fa-solid fa-arrow-right" onclick="modalLoad('${data.id}')" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
+        <div><i class="fa-solid fa-arrow-right bg-danger text-white p-2 rounded" onclick="modalLoad('${data.id}')" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></div>
         </div>
     </div>
         `;
@@ -119,7 +119,7 @@ const showModalData = (details) => {
                            </div>
                          </div>
                          <div class="col-sm-6">
-                           <div class="card">
+                           <div class="card h-100">
                            <button class = "${details.accuracy.score ? details.accuracy.score * 100 : 'd-none'} btn btn-danger" style="position: absolute; top: -10px;right:-5px " >${details.accuracy.score ? details.accuracy.score * 100 : ''} %accuracy </button>
                            <img src="${details.image_link[0]
         }" class=" img-fluid rounded-3 " alt="...">
