@@ -15,7 +15,7 @@
 <body>
     <header class="container text-center mt-4">
         <h3>Ai Universe hub</h3>
-        <button id="sort-btn" class="btn btn-primary">Sort By Date</button>
+        <button onclick="dateSorting()" class="btn btn-primary">Sort By Date</button>
     </header>
 
     <main class="container">
@@ -27,10 +27,10 @@
         <div id="show-all" class="text-center mt-4">
             <div onclick="showAllData()" id="btn-show-all" class="bnt btn btn-primary">See more</div>
         </div>
-        
+
 
         <!-- Modal -->
-        <div class="modal fade  "id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade  " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
@@ -40,7 +40,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div id="modal-two" class="modal-body d-flex justify-content-space-between">
-                       
+
                     </div>
 
                 </div>

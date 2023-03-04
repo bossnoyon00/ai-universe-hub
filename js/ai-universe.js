@@ -16,14 +16,13 @@ const loadData = async () => {
 }
 
 const showAllData = async () => {
-
     // fetch('https://openapi.programming-hero.com/api/ai/tools')
     //     .then(res => res.json())
     //     .then(data => displayData(data.data.tools));
 
+    const showAll = document.getElementById('show-all');
     const res = await fetch('https://openapi.programming-hero.com/api/ai/tools');
     const data = await res.json();
-    const showAll = document.getElementById('show-all');
     const container = document.getElementById('data-load');
     if (data.length > 6) {
         data = data.slice(0, 6);
@@ -39,7 +38,7 @@ const showAllData = async () => {
 
 const displayData = (datas) => {
     const container = document.getElementById('data-load');
-
+    container.innerHTML = '';
     for (const data of datas) {
         console.log(data);
         const newCard = document.createElement('div');
@@ -92,12 +91,12 @@ const showModalData = (details) => {
                            <div class="card">
                              <div class="card-body"  style="border: 1px solid tomato; border-radius: 5px;">
                                <p class="card-text fw-bold">${details.description}/</p>
-                               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 container"> 
+                               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 fw-bold"> 
                             
-                                 <p class="card-text fw-bold">${details.pricing ? details.pricing[0].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[0].plan : ''}</span></p>
+                                 <p class="card-text fw-bold bg-danger-subtle">${details.pricing ? details.pricing[0].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[0].plan : ''}</span></p>
                                
-                                 <p class="card-text fw-bold">${details.pricing ? details.pricing[1].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[1].plan : ''}</span></p>
-                                 <p class="card-text fw-bold">${details.pricing ? details.pricing[2].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[2].plan : ''}</span></p>
+                                 <p class="card-text fw-bold bg-dark-subtle ">${details.pricing ? details.pricing[1].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[1].plan : ''}</span></p>
+                                 <p class="card-text fw-bold bg-primary-subtle">${details.pricing ? details.pricing[2].price : "free of cost"} <br> <span>${details.pricing ? details.pricing[2].plan : ''}</span></p>
                                 
                                </div>
                             
@@ -141,6 +140,19 @@ const showModalData = (details) => {
 
 loadData();
 
+
+const dateSorting = () => {
+    fetch(`https://openapi.programming-hero.com/api/ai/tools`)
+        .then(res => res.json())
+        .then(data => showSorting(data.data.tools))
+}
+
+const showSorting = (date) => {
+    const sort = date.sort((a, b) => {
+        return new Date(a.published_in) - new Date(b.published_in);
+    })
+    displayData(sort)
+}
 
 const integrationsData = (integrations) => {
     let innerHTML = ''
