@@ -154,7 +154,6 @@ const showModalData = (details) => {
 
 loadData();
 
-
 const dateSorting = () => {
     fetch(`https://openapi.programming-hero.com/api/ai/tools`)
         .then(res => res.json())
@@ -172,7 +171,7 @@ const showSorting = (date) => {
 }
 
 const integrationsData = (integrations) => {
-    let innerHTML = ''
+    let innerHTML = '';
     for (let i = 0; i < integrations.length; i++) {
         innerHTML += `<li class="card-text">${integrations[i]} </li>`
     }
